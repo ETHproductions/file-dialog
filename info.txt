@@ -1,0 +1,6 @@
+name=File Dialogs
+description=Open or save files on the device via dialogs.
+author=ETHproductions
+website=
+version=0.1.0
+compatibility=all

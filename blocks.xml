@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<palette>
+	<block	tag="file-data-or-path"
+		spec="data/filepath [e:tag-arrow]"
+		code="data"
+		help="Returns the data from the file, or the filepath selected, as a string."
+		type="normal"
+		color="red"
+		hidden="true"
+		returns="string">
+		<fields>
+		</fields>
+	</block>
+	
+	<block	tag="open-file"
+		spec="open dialog to select file [i:save] with options..."
+		code="FileUtils.openFile({ &#10; ~ });"
+		help="Lets the user choose a file on their device."
+		type="wrapper"
+		color="red"
+		returns="void">
+		<fields>
+			<code-block order="0"/>
+		</fields>
+	</block>
+	
+	<block	tag="save-file"
+		spec="open dialog to save %0 to a file [i:save] with options..."
+		code="FileUtils.saveFile(~, function(cancelled:Bool, path:String) { &#10; ~ &#10; });"
+		help="Lets the user save data to a file on their device."
+		type="wrapper"
+		color="red"
+		returns="void">
+		<fields>
+			<text order="0"/>
+			<code-block order="1"/>
+		</fields>
+	</block>
+	
+	<block	tag="file-dialog-cancelled"
+		spec="[i:save] when user cancels..."
+		code="oncancel: function() { ~ },"
+		help="Use within an &quot;open dialog&quot; block. Runs when the user cancels a file dialog. Note: always runs on Flash, as dialogs are not supported."
+		type="wrapper"
+		color="red"
+		returns="void">
+		<fields>
+			<code-block order="0"/>
+		</fields>
+	</block>
+	
+	<block	tag="file-dialog-submitted"
+		spec="[i:save] when user submits... [e:dash] %1"
+		code="onsubmit: function(data:String) { ~ },"
+		help="Use within an &quot;open dialog&quot; block. Runs when the user submits a file."
+		type="wrapper"
+		color="red"
+		returns="void">
+		<fields>
+			<code-block order="0"/>
+			<attached-block order="1" tag="file-data-or-path"/>
+		</fields>
+	</block>
+	
+	<block	tag="file-dialog-filter"
+		spec="[i:save] ask for %0 files"
+		code="filter: ~,"
+		help="Use within an &quot;open dialog&quot; block to ask the user to upload/save a file with this extension. Do not include the leading period."
+		type="action"
+		color="red"
+		returns="void">
+		<fields>
+			<text order="0"/>
+		</fields>
+	</block>
+	
+	<block	tag="file-dialog-title"
+		spec="[i:save] give dialog title %0"
+		code="title: ~,"
+		help="Use within an &quot;open dialog&quot; block to give the dialog a title."
+		type="action"
+		color="red"
+		returns="void">
+		<fields>
+			<text order="0"/>
+		</fields>
+	</block>
+	
+	<block	tag="file-dialog-path"
+		spec="[i:save] use default path %0"
+		code="path: ~,"
+		help="Use within an &quot;open dialog&quot; block to give the dialog a default path. Make sure to end with a slash if pointing to a directory. (If you're using the &quot;get path&quot; block you don't need to worry about this.)"
+		type="action"
+		color="red"
+		returns="void">
+		<fields>
+			<text order="0"/>
+		</fields>
+	</block>
+	
+	<block	tag="get-directory"
+		spec="path to %0 directory"
+		code="lime.system.System.~Directory"
+		help="Use within an &quot;open dialog&quot; block to give the dialog a default path."
+		type="normal"
+		color="red"
+		returns="text">
+		<fields>
+			<dropdown order="0">
+				<choices>
+					<c text="app storage" code="applicationStorage"/>
+					<c text="application" code="application"/>
+					<c text="desktop" code="desktop"/>
+					<c text="documents" code="documents"/>
+					<c text="user" code="user"/>
+				</choices>
+			</dropdown>
+		</fields>
+	</block>
+</palette>
